@@ -34,7 +34,11 @@
   },
   "name":"Platformer Game",
   "resources":[
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
+    {"id":{"name":"spr_ts1","path":"sprites/spr_ts1/spr_ts1.yy",},},
+    {"id":{"name":"ts_1","path":"tilesets/ts_1/ts_1.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
