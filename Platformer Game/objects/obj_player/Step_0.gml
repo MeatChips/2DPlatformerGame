@@ -14,6 +14,10 @@ var jumpKey = keyboard_check_pressed(vk_space);
 // Get move direction
 var dir = rightKey - leftKey;
 
+if (dir != 0) {
+    image_xscale = dir; // Flip sprite based on direction
+}
+
 horizontalSpeed += dir * accel;
 
 if(dir == 0) // No direction
@@ -112,5 +116,17 @@ camX = lerp(camX, targetX, 0.1); // Adjust 0.1 for smoothness
 camY = lerp(camY, targetY, 0.1); // Adjust 0.1 for smoothness
 
 camera_set_view_pos(view_camera[0], camX, camY);
+
+#endregion
+
+#region HP and Respawning
+
+// If your health is smaller or equal to 0, then respawn and reset your health
+if(hp <= 0)
+{
+    x = originalPosX;
+    y = originalPosY;
+    hp = 1;
+}
 
 #endregion
