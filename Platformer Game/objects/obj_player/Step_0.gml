@@ -121,12 +121,43 @@ camera_set_view_pos(view_camera[0], camX, camY);
 
 #region HP and Respawning
 
-// If your health is smaller or equal to 0, then respawn and reset your health
-if(hp <= 0)
-{
-    x = originalPosX;
-    y = originalPosY;
-    hp = 1;
+// Check if there is collision with the spike
+if (place_meeting(x, y, obj_spike)) {
+    if (!damageTaken) {
+        // Reduce health by only once
+        hp--;
+
+        // Respawn if health is smaller or equal to zero
+        if (hp <= 0) {
+            
+            // Reset to original position
+            x = originalPosX;      
+            y = originalPosY;
+            
+            // Reset health
+            hp = 3;          
+            
+            // Stop movement      
+            horizontalSpeed = 0;   
+            verticalSpeed = 0;
+        } else {
+            // Apply knockback to the player when you are not respawning
+            
+            // Knockback direction away from the spike
+            var knockbackDir = point_direction(x, y, obj_spike.x, obj_spike.y) + 225; 
+            
+            // Calculate how much the player should move horizontally and vertically
+            // based on the direction and the knockback force.
+            horizontalSpeed = lengthdir_x(knockbackForce, knockbackDir);
+            verticalSpeed = lengthdir_y(knockbackForce, knockbackDir);
+        }
+
+        // Damage is taken
+        damageTaken = true;
+    }
+} else {
+    // Reset damageTaken when there is no more collision with a spike
+    damageTaken = false;
 }
 
 #endregion

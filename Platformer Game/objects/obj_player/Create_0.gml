@@ -16,7 +16,8 @@ canDoubleJump = true; // Check if you can double jump or not
 layerID = layer_tilemap_get_id("Tiles_1"); // Tilemap ID
 collideWith = [layerID]; // What to collide with
 
-hp = 1; // Health
-
+hp = 3; // Health
 originalPosX = x; // Original position on the x axis
 originalPosY = y; // Original position on the y axis
+knockbackForce = 10; // Force of the knockback
+damageTaken = false; // Check if damage is taken
